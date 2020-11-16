@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.navbar {
+overflow: hidden;
+background-color: #80c0ff;
+}
+.navbar a {
+float: left;
+display: block;
+color: black;
+text-align: center;
+padding: 15px;
+text-decoration: none;
+font-size: 18px;
+}
+.navbar a:hover{
+background-color: #60a0df;
+}
+.navbar a.currentpage{
+background-color: #5090ef;
+}
+.selecthelp{
+width: 120px;
+position: fixed;
+background: #80ffc0;
+padding: 8px;
+}
+.selecthelp p {
+padding: 8px;
+font-size: 18px;
+color: #6090bf;
+display: block;
+cursor: pointer;
+}
+.selecthelp p:hover {
+background-color: #60dfa0;
+}
+.text {
+margin-left: 150px;
+font-size: 15px;
+}
+</style>
+<script>
+let current = "help1";
+function change(toDisplay){
+document.getElementById(current).style.display = "none";
+document.getElementById(toDisplay).style.display = "block";
+current = toDisplay;
+}
+</script>
+</head>
+<body>
+<div class="navbar">
+<a href="index.htm">Home</a>
+<a class="currentpage" href="">Help</a>
+<a href="about.htm">About</a>
+</div>
+<div class="selecthelp">
+<p onclick="change('help1')">Setting Schedule</p>
+<p onclick="change('help2')">Managing Employees</p>
+<p onclick="change('help3')">Creating the Schedule</p>
+<p onclick="change('help4')">Calendar View</p>
+<p onclick="change('help5')">Miscellaneous</p>
+</div>
+<div class="text">
+<div id="help1">
+<p>To set the schedule, set each box to how many employees should work at each half-hour interval of the week. For example, if 3 employees should work at 7:00am-7:30am on Sunday, set the Sunday 7:00a box to 3.</p>
+<h2>Set Selected</h2>
+<p>The Set Selected button sets all selected boxes to a specified value:</p>
+<img src="helpselected1.png" alt="This image was unavailable for some reason" width="840" height="480">
+<img src="helpselected2.png" alt="This image was unavailable for some reason" width="840" height="480">
+<img src="helpselected3.png" alt="This image was unavailable for some reason" width="840" height="480">
+<p>Note that the Total Employee Hours box was updated to 100: 25 hours with 4 employees.</p>
+<h2>Add One</h2>
+<p>The Add One button adds one employee to all selected boxes:</p>
+<img src="helpadd1.png" alt="This image was unavailable for some reason" width="840" height="480">
+<img src="helpadd2.png" alt="This image was unavailable for some reason" width="840" height="480">
+<p>The Subtract One button will subtract one employee from all selected boxes with at least 1 employee.</p>
+</div>
+<div id="help2">
+<p>To add an employee, click "Add Employee" and put in the desired values.</p>
+<p>Employees can be set to different priorities. In case of conflict, lower priority employees will be more likely to be scheduled for less than their minimum or more than their maximum number of hours.</p>
+<p>The greater the number, the higher the priority.</p>
+<p>"Minimum Hours" is the sum of minimum hours for all employees. If the total employee hours is less than this, the schedule will be impossible to satisfy and creating the schedule will give an error.</p>
+<p>"Maximum Hours" is the sum of maximum hours for all employees. If the total employee hours is greater than this, the schedule will be impossible to satisfy and creating the schedule will give an error.</p>
+<h2>Removing Employees</h2>
+<p>"Remove Employees" deletes all the employees where the checkbox on the left is checked.</p>
+<p>In this example, "Remove Employees" would delete employees 2 and 3.</p>
+<img src="helpremove1.png" alt="This image was unavailable for some reason" width="1000" height="400">
+<h2>Sorting</h2>
+<p>The Sort Employees button sorts employees alphabetically by last name.</p>
+<p>Before</p>
+<img src="helpsort1.png" alt="This image was unavailable for some reason" width="1000" height="400">
+<p>After</p>
+<img src="helpsort2.png" alt="This image was unavailable for some reason" width="1000" height="400">
+<h2>Setting Availability</h2>
+<p>Clicking "Set Availability" on any employee will open the following window. Green cells indicate that the employee is available to work at that time:</p>
+<img src="helpavail1.png" alt="This image was unavailable for some reason" width="700" height="300">
+<p>The "Set Unavailable" button makes the employee unavailable for the selected time. This is shown in red. When the schedule is created, the program will do its best to avoid scheduling the employee for that time.</p>
+<img src="helpavail2.png" alt="This image was unavailable for some reason" width="700" height="300">
+<p>The "Set Must Work" button sets a shift that the employee must be scheduled to work. In this example, the employee must work from 8:00am to 4:00pm on Monday. Note that there will be an error if 0 employees are required at that time.</p>
+<img src="helpavail3.png" alt="This image was unavailable for some reason" width="700" height="300">
+<p>"Add Must Work" will add 1 employee to the table for all times designated as "Must Work" for this employee. "Subtract Must Work" subtracts 1 employee for those times.</p>
+<p>Press OK to save the changes. Note that pressing Cancel will discard any changes made.</p>
+</div>
+<div id="help3">
+<h2>Create Schedule</h2>
+<p>When "Create Schedule" is clicked, the application tries to create shifts between the minimum and maximum specified, which can be edited:</p>
+<img src="helpminmax.png" alt="This image was unavailable for some reason" width="400" height="200">
+<p>The application favors creating longer shifts.</p>
+<p>Sometimes the application is unable to create shifts that are at least the minimum length. In this example, the application must create a half-hour shift from 1:30-2:00 on Thursday.</p>
+<img src="helpproblem1.png" alt="This image was unavailable for some reason" width="700" height="400">
+<p>There are 4 options when this problem arises.</p>
+<p>1. Extend Shift</p>
+<p>Make the shift longer. This will change the employee requirements to add an additional employee for the remaining time.</p>
+<p>2. Remove Shift</p>
+<p>Remove the shift. This will change the employee requirements to subtract one employee for the duration of the shift.</p>
+<p>3. Leave As Is</p>
+<p>Make no changes.</p>
+<p>4. Cancel</p>
+<p>Stop creating the schedule.</p>
+<p>There is another error that can occur:</p>
+<img src="helpproblem2.png" alt="This image was unavailable for some reason" width="700" height="400">
+<p>This happens when more employees "must work" than are supposed to work at a particular time. In this case, 3 employees "must work" at 7:00am on Sunday (as specified in "Set Availability"), but according to the table, only 2 employees are supposed to work at 7:00am on Sunday.</p>
+<p>To fix this, either remove the "must work" designation from some employees by clicking "Set Availability" on them, or increase the number of employees in the table.</p>
+<p>If there are no more problems, the schedule will appear in the box on the right.</p>
+<img src="helpfinished.png" alt="This image was unavailable for some reason" width="700" height="400">
+</div>
+<div id="help4">
+<h2>Calendar View</h2>
+<p>To view the schedule as a calendar or to print the schedule, click Calendar View.</p>
+<p>There are two fields under the button: Title and Start Date.</p>
+<img src="helpcalendar1.png" alt="This image was unavailable for some reason" width="400" height="400">
+<p>"Start Date" is the date of Sunday on the calendar (the start of the week). If "Start Date" is November 8, the calendar will start on November 1, like so:</p>
+<img src="helpcalendar2.png" alt="This image was unavailable for some reason" width="800" height="300">
+<p>"Title" is the title that will be printed on the top of the calendar if it is printed. To print the calendar, click "Print" on top of the calendar.</p>
+<p>If the text "Department Name" is in the "Title" box, the printed schedule will look like this:</p>
+<img src="helpcalendar3.png" alt="This image was unavailable for some reason" width="960" height="400">
+</div>
+<div id="help5">
+<p>The application will attempt to only schedule each employee for 5 days, though availability shall take precedence.</p>
+<p>No employee will have two shifts that start on the same day.</p>
+<p>Every employee will have at least 8 hours in between shifts.</p>
+<h2>Saving and Loading</h2>
+<p>Use "Save To File" to save schedules and "Load From File" to retrieve them. Save schedules as .txt files.</p>
+</div>
+</div>
+<script>
+document.getElementById("help1").style.display = "block";
+document.getElementById("help2").style.display = "none";
+document.getElementById("help3").style.display = "none";
+document.getElementById("help4").style.display = "none";
+document.getElementById("help5").style.display = "none";
+</script>
+</body>
+</html>
